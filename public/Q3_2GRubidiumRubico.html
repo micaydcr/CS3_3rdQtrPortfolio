@@ -1,88 +1,186 @@
-<form>
- 
-    <label for="StudentID">Student ID: </label><br/>
-    <input type="number" id="StudentID" name="StudentID" min="20000000" max="200000000">
-    
-</form>
+<!DOCTYPE html>
 
-<form>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="author" content="Michaela Alexa Rubico">
+    <title>Club Application Form</title>
 
-    <label for="FullName">Full Name:</label><br/>
-   <input type="text" id="FullName" name="FullName">
+</head>
 
-</form>
+<style>
+    body {
+        background-color: #eaf3fb;
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        color: #1f3a5f;
+        text-align: center;
+    }
 
-<form>
+    .header-box {
+        width: 60%;
+        margin: 30px auto 15px;
+        padding: 25px;
+        background-color: #4f81bd;
+        border-radius: 10px;
+        font-size: 34px;
+        font-weight: 600;
+        color: white;
+    }
 
-    <label for="Birthday">Birthday:</label><br/>
-   <input type="date" id="Birthday" name="Birthday">
+    form {
+        width: 60%;
+        margin: auto;
+        background-color: #cfe2f3;
+        padding: 25px;
+        border-radius: 10px;
+    }
 
-</form>
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: 500;
+    }
 
-<form>
+    input, select, textarea {
+        width: 80%;
+        padding: 8px;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        border-radius: 6px;
+        border: 1px solid #9bbce0;
+    }
 
-    <label for="Mobilephone">Mobile phone:</label><br/>
-   <input type="text" id="Mobilephone" name="Mobilephone">
+    .radio-group {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 10px;
+    }
 
-</form>
+    .error {
+        border: 2px solid #cc0000;
+        background-color: #ffdddd;
+    }
 
-<label for="grade">What is your Grade Level?</label></br>
+    input:focus, select:focus, textarea:focus {
+        border: 2px solid #2e75b6;
+        outline: none;
+        background-color: #f4faff;
+    }
 
-<select name="grade" id="grade">
+    input[type="submit"], input[type="reset"] {
+        width: 150px;
+        margin: 10px;
+        padding: 10px;
+        background-color: #4f81bd;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+    }
 
-   <option value="7">Grade 7</option>
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+        background-color: #2e75b6;
+    }
 
-   <option value="8">Grade 8</option>
+</style>
 
-   <option value="9">Grade 9</option>
+<script>
 
-   <option value="10">Grade 10</option>
+        function confirmSubmit() {
+        let ok = confirm("Are you sure you want to submit this application?");
+        if (ok) {
+            alert("Thank you for applying!");
+            return true;
+        }
+        return false;
+    }
 
-   <option value="11">Grade 11</option>
+    function confirmReset() {
+        return confirm("Are you sure you want to reset the form?");
+    }
 
-   <option value="12">Grade 12</option>
+    function checkEmpty(field) {
+        if (field.value.trim() === "") {
+            field.classList.add("error");
+        } else {
+            field.classList.remove("error");
+        }
+    }
+</script>
 
+</head>
+
+<body>
+
+    <div class="header-box">
+        Club Application Form
+    </div>
+
+    <form method="post" action="submit"
+      onsubmit="return confirmSubmit()"
+      onreset="return confirmReset()">
+
+<label for="StudentID"><b>Student ID:</b></label><br>
+<input type="number" id="StudentID" name="StudentID" required>
+<br><br>
+
+<label for="FullName"><b>Full Name:</b></label><br>
+<input type="text" id="FullName" name="FullName" required onblur="checkEmpty(this)">
+<br><br>
+
+<label for="Birthday"><b>Birthday:</b></label><br>
+<input type="date" id="Birthday" name="Birthday" required>
+<br><br>
+
+<label for="Mobilephone"><b>Mobile Phone:</b></label><br>
+<input type="text" id="Mobilephone" name="Mobilephone" required onblur="checkEmpty(this)">
+<br><br>
+
+<label for="grade"><b>Grade Level:</b></label><br>
+<select name="grade" id="grade" required>
+    <option value="select">-Select Grade Level-</option>
+    <option value="g7">Grade 7</option>
+    <option value="g8">Grade 8</option>
+    <option value="g9">Grade 9</option>
+    <option value="g10">Grade 10</option>
+    <option value="g11">Grade 11</option>
+    <option value="g12">Grade 12</option>
 </select>
 
-<form>
+<p><b>Intern or Extern?</b></p>
+<div class="radio-group">
+    <label>
+        <input type="radio" name="status" value="intern" required> Intern
+    </label>
+    <label>
+        <input type="radio" name="status" value="extern"> Extern
+    </label>
+</div><br>
 
-    <p>Intern or Extern?</p>
-  
-  
-    <input type="radio" id="intern" name="intern" value="intern">
-  
-  
-    <label for="intern">Intern</label></br>
-  
-  
-    <input type="radio" id="extern" name="extern" value="extern">
-  
-  
-    <label for="extern">Extern</label></br>
-  
-  </form>
-
-  <label for="orgs">What Club/Organization do you want to join?</label></br>
-
-<select name="orgs" id="orgs">
-
-   <option value="aksis">AKSIS</option>
-
-   <option value="likha">Likha</option>
-
-   <option value="lagablab">Ang Lagblab</option>
-
-   <option value="scischo">The Science Scholar</option>
-
-   <option value="ay">Agham Youth</option>
-
+<label for="orgs"><b>What Club/Organization do you want to join?</b></label><br>
+<select name="orgs" id="orgs" required>
+    <option value="select">-Select Organization-</option>
+    <option value="aksis">AKSIS</option>
+    <option value="likha">Likha</option>
+    <option value="lagablab">Ang Lagablab</option>
+    <option value="scischo">The Science Scholar</option>
+    <option value="ay">Agham Youth</option>
 </select>
+<br><br>
 
+<label for="reasons"><b>Why do you want to join?</b></label><br>
+<textarea id="reasons" name="reasons" rows="5" required onblur="checkEmpty(this)"></textarea>
+<br>
 
-<form>
-
-    <label for="reasons">Why do you want to join? </label></br>
-
-    <textarea id="reasons" name="reasons" rows="4" cols="50"> </textarea>
+<br><br>
+<input type="submit" value="Submit">
+<input type="reset" value="Reset">
 
 </form>
+
+</body>
+</html>
